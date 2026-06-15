@@ -30,8 +30,8 @@ public class RestaurantTableService {
         return restaurantTableRepository.save(table);
     }
 
-    //Método eliminar mesa
 
+    //Método eliminar mesa
     public void deleteTable(Long id){
         restaurantTableRepository.deleteById(id);
     }

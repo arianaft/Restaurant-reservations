@@ -3,11 +3,9 @@ package com.ariana.restaurant_reservations.controler;
 import com.ariana.restaurant_reservations.model.RestaurantTable;
 import com.ariana.restaurant_reservations.service.RestaurantTableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +32,21 @@ public class RestaurantTableController {
 
     }
 
+    //Endpoint POST
 
+    @PostMapping
+    public ResponseEntity<RestaurantTable> createTable(@RequestBody RestaurantTable table){
+        return ResponseEntity.status(HttpStatus.CREATED).body(restaurantTableService.createTable(table));
+    }
+
+
+    //Endpoint DELETE
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<Void> deleteTable(@PathVariable Long id){
+        restaurantTableService.deleteTable(id);
+        return ResponseEntity.noContent().build();
+
+    }
 
 
 
