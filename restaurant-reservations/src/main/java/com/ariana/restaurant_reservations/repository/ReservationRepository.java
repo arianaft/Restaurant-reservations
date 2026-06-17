@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public interface ReservationRepository extends JpaRepository<Reservation ,Long > {
-    //Metodo comprobar reserve de una mesa
+    //Metodo comprobar reserva de una mesa
     boolean existsByRestaurantTableAndReservationDateAndReservationTime(
             RestaurantTable table,
             LocalDate date,
