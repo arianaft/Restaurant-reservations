@@ -31,10 +31,10 @@ public class ReservationController {
     }
 
     //Método PUT
+
     @PutMapping("/{id}/cancel")
-    public Reservation cancelReservation(Long id){
-      Reservation reservation =  reservationRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Reserva no encontrada"));
+    public ResponseEntity<Reservation> cancelReservation(@PathVariable Long id){
+       return  ResponseEntity.ok(reservationService.cancelReservation(id));
     }
 
 
