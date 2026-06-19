@@ -93,8 +93,8 @@ Contraseña: (vacía)
 
 - [x] Entidad RestaurantTable
 - [x] Repository y Service de mesas
-- [ ] Controller de mesas
-- [ ] Entidad Customer y Reservation
+- [x] Controller de mesas
+- [x] Entidad Customer y Reservation
 - [ ] Lógica de disponibilidad
 - [ ] Migración a MySQL
 - [ ] Despliegue en Railway
