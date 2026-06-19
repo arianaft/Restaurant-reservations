@@ -77,6 +77,10 @@ public class ReservationService {
     }
 
 
+    //Método eliminar reserva
+    public void deleteReservation(Long id){
+        reservationRepository.deleteById(id);
+    }
 
 
 }
