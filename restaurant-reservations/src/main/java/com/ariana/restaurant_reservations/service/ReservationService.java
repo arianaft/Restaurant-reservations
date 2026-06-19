@@ -2,6 +2,7 @@ package com.ariana.restaurant_reservations.service;
 
 import com.ariana.restaurant_reservations.model.Customer;
 import com.ariana.restaurant_reservations.model.Reservation;
+import com.ariana.restaurant_reservations.model.ReservationStatus;
 import com.ariana.restaurant_reservations.model.RestaurantTable;
 import com.ariana.restaurant_reservations.repository.CustomerRepository;
 import com.ariana.restaurant_reservations.repository.ReservationRepository;
@@ -62,6 +63,19 @@ public class ReservationService {
         return  reservationRepository.save(reservation);
 
     }
+
+    //Método cancelar
+
+    public Reservation cancelReservation(Long id){
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(()  -> new RuntimeException("Reserva no encontrada"));
+        if(reservation.getStatus() == ReservationStatus.CANCELLED){
+            return reservation;
+        }
+        reservation.setStatus(ReservationStatus.CANCELLED);
+        return reservationRepository.save(reservation);
+    }
+
 
 
 
