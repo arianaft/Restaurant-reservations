@@ -30,11 +30,18 @@ public class ReservationController {
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    //Método PUT
+    //Endpoint PUT
 
-    @PutMapping("/{id}/cancel")
+    @PutMapping("/{id}")
     public ResponseEntity<Reservation> cancelReservation(@PathVariable Long id){
        return  ResponseEntity.ok(reservationService.cancelReservation(id));
+    }
+
+    //Endpoint Delete
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long id){
+        reservationService.deleteReservation(id);
+        return ResponseEntity.ok().build();
     }
 
 
