@@ -1,5 +1,7 @@
 package com.ariana.restaurant_reservations.service;
 
+import com.ariana.restaurant_reservations.exception.ReservationConflictException;
+import com.ariana.restaurant_reservations.exception.ResourceNotFoundException;
 import com.ariana.restaurant_reservations.model.Customer;
 import com.ariana.restaurant_reservations.model.Reservation;
 import com.ariana.restaurant_reservations.model.ReservationStatus;
@@ -40,11 +42,11 @@ public class ReservationService {
     public Reservation createReservation(Reservation reservation){
         //Verifica mesa existente
         RestaurantTable table = restaurantTableRepository.findById(reservation.getTable().getId())
-                .orElseThrow(() -> new RuntimeException("Mesa no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Mesa no encontrada"));
 
         //Verifica cliente existente
         Customer customer = customerRepository.findById(reservation.getCustomer().getId())
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado"));
 
 
         //Verificar disponibilidad
@@ -56,7 +58,7 @@ public class ReservationService {
                         reservation.getReservationTime()
                 );
         if(isAvailable){
-            throw new RuntimeException("La mesa ya está reservada para esa fecha y hora");
+            throw new ReservationConflictException("La mesa ya está reservada para esa fecha y hora");
 
         }
 
@@ -68,7 +70,7 @@ public class ReservationService {
 
     public Reservation cancelReservation(Long id){
         Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(()  -> new RuntimeException("Reserva no encontrada"));
+                .orElseThrow(()  -> new ResourceNotFoundException("Reserva no encontrada"));
         if(reservation.getStatus() == ReservationStatus.CANCELLED){
             return reservation;
         }
