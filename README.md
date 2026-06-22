@@ -95,6 +95,6 @@ Contraseña: (vacía)
 - [x] Repository y Service de mesas
 - [x] Controller de mesas
 - [x] Entidad Customer y Reservation
-- [ ] Lógica de disponibilidad
+- [x] Lógica de disponibilidad
 - [ ] Migración a MySQL
 - [ ] Despliegue en Railway
