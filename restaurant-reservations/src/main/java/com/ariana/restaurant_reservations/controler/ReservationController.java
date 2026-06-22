@@ -24,7 +24,7 @@ public class ReservationController {
 
     //Endpoint GET devuelve reserva por id
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<Reservation> getReservationById(@PathVariable Long id){
         return reservationService.getReservationById(id)
                 .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());

@@ -50,7 +50,7 @@ public class ReservationService {
         //Verificar disponibilidad
 
         boolean isAvailable =
-                reservationRepository.existsByRestaurantTableAndReservationDateAndReservationTime(
+                reservationRepository.existsByTableAndReservationDateAndReservationTime(
                         table,
                         reservation.getReservationDate(),
                         reservation.getReservationTime()
